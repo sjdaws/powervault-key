@@ -42,7 +42,12 @@ func New(featureEnableIdentifier string) (*Licence, error) {
 
 // AddFeature adds a feature to a licence
 func (l *Licence) AddFeature(capability capabilities.Capability, limit int) error {
-	l.features = append(l.features, l.createFeature(capability, limit))
+	feature, err := l.createFeature(capability, limit)
+	if err != nil {
+		return err
+	}
+
+	l.features = append(l.features, feature)
 
 	return nil
 }
@@ -90,8 +95,13 @@ func (l *Licence) Save(filename string) error {
 		}
 	}
 
-	// Flush to buffer, save to file
-	writer.Flush()
+	// Flush to buffer
+	err = writer.Flush()
+	if err != nil {
+		return err
+	}
+
+	// Save to file
 	_, err = file.Write(buffer.Bytes())
 	if err != nil {
 		return err

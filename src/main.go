@@ -41,10 +41,21 @@ func main() {
 	}
 
 	command.Flags().VarP(enumflag.NewWithoutDefault(&array, "array", arrayIds, enumflag.EnumCaseInsensitive), "array", "a", fmt.Sprintf("supported arrays: %s", strings.Join(supportedArrays, ", ")))
-	command.MarkFlagRequired("array")
+	err := command.MarkFlagRequired("array")
+	if err != nil {
+		log.Fatalf("Unable to start: %v", err)
+	}
+
 	command.Flags().StringVarP(&featureEnableIdentifier, "feature-enable-identifier", "f", "", "the feature enable identifier from your MD array")
-	command.MarkFlagRequired("feature-enable-identifier")
+	err = command.MarkFlagRequired("feature-enable-identifier")
+	if err != nil {
+		log.Fatalf("Unable to start: %v", err)
+	}
+
 	command.Flags().StringVarP(&output, "output", "o", "<feature-enable-identifier>.key", "the full path and filename to save the licence to")
 
-	_ = command.Execute()
+	err = command.Execute()
+	if err != nil {
+		log.Fatalf("Unable to start: %v", err)
+	}
 }

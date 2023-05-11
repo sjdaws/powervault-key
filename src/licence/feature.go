@@ -19,7 +19,7 @@ type feature struct {
 }
 
 // CreateFeature creates a new feature
-func (l *Licence) createFeature(capability capabilities.Capability, limit int) *feature {
+func (l *Licence) createFeature(capability capabilities.Capability, limit int) (*feature, error) {
 	f := &feature{
 		capability: capability,
 		limit:      limit,
@@ -27,30 +27,68 @@ func (l *Licence) createFeature(capability capabilities.Capability, limit int) *
 	}
 
 	hash := sha1.New()
-	hash.Write(l.salt)
-	hash.Write(l.featureEnableIdentifier)
+
+	_, err := hash.Write(l.salt)
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = hash.Write(l.featureEnableIdentifier)
+	if err != nil {
+		return nil, err
+	}
 
 	if limit > 0 {
 		f.keyVersion = 2
 
-		hash.Write(f.uniqueId)
-		hash.Write(bigEndian(f.supportedFeatureBundleId))
-		hash.Write(bigEndian(int(f.capability)))
-		hash.Write(bigEndian(f.limit))
-		hash.Write(bigEndian(f.duration))
+		_, err = hash.Write(f.uniqueId)
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = hash.Write(bigEndian(f.supportedFeatureBundleId))
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = hash.Write(bigEndian(int(f.capability)))
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = hash.Write(bigEndian(f.limit))
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = hash.Write(bigEndian(f.duration))
+		if err != nil {
+			return nil, err
+		}
 	} else {
 		f.keyVersion = 1
 
-		hash.Write(bigEndian(int(f.capability)))
+		_, err = hash.Write(bigEndian(int(f.capability)))
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	digest := sha1.New()
-	digest.Write(l.featureEnableIdentifier)
-	digest.Write(hash.Sum(nil))
+
+	_, err = digest.Write(l.featureEnableIdentifier)
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = digest.Write(hash.Sum(nil))
+	if err != nil {
+		return nil, err
+	}
 
 	f.digest = digest.Sum(nil)
 
-	return f
+	return f, nil
 }
 
 // save saves the feature to a writer

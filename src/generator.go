@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/sjdaws/powervault-reverse-engineering/capabilities"
 	"github.com/sjdaws/powervault-reverse-engineering/licence"
 )
@@ -18,19 +16,60 @@ func generate(device string, featureEnableIdentifier string, output string) erro
 	case "MD3200":
 		fallthrough
 	case "MD3220":
-		deviceLicence.AddFeature(capabilities.HighPerformanceTier, 0)
-		deviceLicence.AddFeature(capabilities.PhysicalDiskSlots192, 0)
-		deviceLicence.AddFeature(capabilities.Snapshot, 256)
-		deviceLicence.AddFeature(capabilities.SnapshotVirtualDisks, 0)
-		deviceLicence.AddFeature(capabilities.SsdCache, 0)
-		deviceLicence.AddFeature(capabilities.VirtualDiskCopy, 0)
+		err = deviceLicence.AddFeature(capabilities.HighPerformanceTier, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.PhysicalDiskSlots192, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.Snapshot, 256)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.SnapshotVirtualDisks, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.SsdCache, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.VirtualDiskCopy, 0)
+		if err != nil {
+			return err
+		}
 	case "MD3460":
-		deviceLicence.AddFeature(capabilities.DataAssurance, 0)
-		deviceLicence.AddFeature(capabilities.PhysicalDiskSlots180, 0)
-		deviceLicence.AddFeature(capabilities.Snapshot, 512)
-		deviceLicence.AddFeature(capabilities.VirtualDiskCopy, 0)
+		err = deviceLicence.AddFeature(capabilities.DataAssurance, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.PhysicalDiskSlots180, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.Snapshot, 512)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.VirtualDiskCopy, 0)
+		if err != nil {
+			return err
+		}
 	default:
-		return fmt.Errorf("unsupported array: %s", device)
+		err = deviceLicence.AddFeature(capabilities.None, 0)
+		if err != nil {
+			return err
+		}
 	}
 
 	err = deviceLicence.Save(output)
