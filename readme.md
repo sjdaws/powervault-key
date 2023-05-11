@@ -17,18 +17,18 @@ $ go run .
 
 To generate a licence key, at least two parameters will need to be supplied: array type, and feature enable identifier.
 
-| Flag | Short Flag | Description | Required |
-|------|------------|-------------|----------|
-| `--array <array>` | `-a <array>` | The type of storage array the key should be generated for<sup>2</sup>.<br/>Must be a [supported array](#supported-arrays). | Yes |
-| `--identifier <identifier>` | `-i <identifier>` | The feature enable identifier for the array<sup>1</sup>. | Yes |
-| `--output <path>` | `-o <path>` | The location to save the file, if not specified the licence will be saved as `<identifier>.key` in the directory the key generator is running from.
+| Flag | Description | Required |
+|------------|-------------|----------|
+| `-a <array>` | The type of storage array the key should be generated for<sup>2</sup>.<br/>Must be a [supported array](#supported-arrays). | Yes |
+| `-f <identifier>` | The feature enable identifier for the array<sup>1</sup>. | Yes |
+| `-o <path>` | The location to save the file, if not specified the licence will be saved as `<identifier>.key` in the directory the key generator is running from. | No |
 
 ![](assets/parameters.png)
 
 #### Full example
 
 ```sh
-$ go run . -a md3200 -i 30000000000000000000000000000005 -o /home/me/licence.key
+$ go run . -a md3200 -f 30000000000000000000000000000005 -o /home/me/licence.key
 ```
 
 ## Array types
