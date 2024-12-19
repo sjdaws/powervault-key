@@ -152,6 +152,7 @@ const (
 	// public static final int CAPABILITY_REMOTE_MIRRORING_TYPE2 = 107;
 
 	// public static final int CAPABILITY_TOTAL_NUMBER_OF_ARVM_MIRRORS_PER_ARRAY = 109;
+	RemoteMirroring Capability = 109
 
 	// public static final int CAPABILITY_TOTAL_NUMBER_OF_PITS_PER_ARRAY = 110;
 	Snapshot Capability = 110
