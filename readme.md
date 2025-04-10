@@ -28,7 +28,7 @@ To generate a licence key, at least two parameters will need to be supplied: arr
 #### Full example
 
 ```sh
-$ go run . -a md3200 -f 30000000000000000000000000000005 -o /home/me/licence.key
+$ go run . -a md3460 -f 30000000000000000000000000000005 -o /home/me/licence.key
 ```
 
 ## Array types
@@ -47,6 +47,6 @@ The following arrays are supported:
 This key generator has successfully been tested on the following arrays:
 
 - MD3200
-- MD2460
+- MD3460
 
 
