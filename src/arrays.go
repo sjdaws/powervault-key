@@ -6,6 +6,7 @@ type Array int
 const (
 	MD3200 Array = 3200
 	MD3220 Array = 3220
+	MD3400 Array = 3400
 	MD3460 Array = 3460
 )
 
@@ -13,5 +14,6 @@ const (
 var arrayIds = map[Array][]string{
 	MD3200: {"MD3200"},
 	MD3220: {"MD3220"},
+	MD3400: {"MD3400"},
 	MD3460: {"MD3460"},
 }

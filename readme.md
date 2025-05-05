@@ -40,6 +40,7 @@ The following arrays are supported:
 | Array | Enabled features |
 |-------|------------------|
 | MD3200<br/>MD3220 | &bull; Additional hard drives - 192 drives<br/>&bull; High performance tier<br/>&bull; Snapshots<br/>&bull; Snapshots plus virtual disk copy<br/>&bull; SSD cache<br/>&bull; Virtual disk copy |
+| MD3400 | &bull; Additional hard drives - 192 drives<br/>&bull; Data assurance<br/>&bull; High performance tier<br/>&bull; Snapshots<br/>&bull; SSD cache<br/>&bull; Virtual disk copy |
 | MD3460 | &bull; Additional hard drives - 180 drives<br/>&bull; Data assurance<br/>&bull; Snapshots<br/>&bull; Virtual disk copy |
 
 ### Tested arrays
@@ -48,5 +49,3 @@ This key generator has successfully been tested on the following arrays:
 
 - MD3200
 - MD3460
-
-
