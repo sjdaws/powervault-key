@@ -90,6 +90,36 @@ func generate(device string, featureEnableIdentifier string, output string) erro
 		if err != nil {
 			return err
 		}
+	case "MD3800":
+		err = deviceLicence.AddFeature(capabilities.HighPerformanceTier, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.Snapshot, 256)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.SsdCache, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.VirtualDiskCopy, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.PhysicalDiskSlots192, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.RemoteMirroring, 32)
+		if err != nil {
+			return err
+		}
 	default:
 		err = deviceLicence.AddFeature(capabilities.None, 0)
 		if err != nil {
