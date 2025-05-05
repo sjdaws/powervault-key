@@ -48,4 +48,5 @@ The following arrays are supported:
 This key generator has successfully been tested on the following arrays:
 
 - MD3200
+- MD3400
 - MD3460
