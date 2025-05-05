@@ -45,6 +45,31 @@ func generate(device string, featureEnableIdentifier string, output string) erro
 		if err != nil {
 			return err
 		}
+	case "MD3400":
+		err = deviceLicence.AddFeature(capabilities.HighPerformanceTier, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.PhysicalDiskSlots192, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.Snapshot, 256)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.SsdCache, 0)
+		if err != nil {
+			return err
+		}
+
+		err = deviceLicence.AddFeature(capabilities.VirtualDiskCopy, 0)
+		if err != nil {
+			return err
+		}
 	case "MD3460":
 		err = deviceLicence.AddFeature(capabilities.DataAssurance, 0)
 		if err != nil {
